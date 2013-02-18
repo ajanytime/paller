@@ -1,0 +1,250 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>Jar Creative Mobile</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> <meta name="apple-mobile-web-app-capable" content="yes">
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+        <link rel="stylesheet" href="http://www.jarcreative.com/wp-content/themes/jarcreative/mobile/css/styles.css" />
+        <script type="text/javascript" src="http://www.jarcreative.com/wp-content/themes/jarcreative/includes/js/FlexSlider/jquery.flexslider.js"></script>
+        <link href="http://www.jarcreative.com/wp-content/themes/jarcreative/includes/js/FlexSlider/flexslider.css" rel="stylesheet" />
+        <style type="text/css">
+
+            .flexslider 
+            {
+                height: 120px;
+            }
+            .jar-home-control {
+                width:360px;
+            }
+
+            #list_of_clients {
+                height: 70px;
+            }
+
+            .img-jar-home-nav {
+                width:98px;
+            }
+
+            #menu {
+                width: 165px;
+                height: 100%;
+                display: block !important;
+                float: right;
+
+            }	
+
+            #home {
+                min-height:372px;
+                width:100%;
+                position: absolute;
+                display: block;
+                overflow: visible;
+                top: 0;
+                right: 0;
+                border: 0;
+                background-color: #fff;
+                line-height: 18px;
+                outline: 0;
+                padding: 0;
+                margin: 0;
+                text-shadow:0 1px 0 #fff;
+            }
+
+            .showMenu {
+                float: right;
+                position: relative;
+            }
+
+        </style>
+        <script type="text/javascript">
+
+            var contentSliderHome;
+
+
+
+            $(document).bind("mobileinit", function(){
+                //global settings
+                $.mobile.ajaxEnabled = true;
+                $.mobile.defaultDialogTransition = 'flip';
+                $.mobile.defaultPageTransition = 'fade';
+                $.mobile.linkBindingEnabled = true; //disable this to bind custom click events or to use other library
+                $.mobile.loadingMessage = "wait ..."; //set this to false to disable the loading messaage
+                $.mobile.maxTransitionWidth = false; //Set a max width for transitions. The option accepts any number representing a pixel width and its default value false. If a number value is set, transition "none" will be used if the window is wider than the specified value.
+                $.mobile.pageLoadErrorMessage = "Aw Snap ! :(";
+                $.mobile.touchOverflowEnabled = false; //Enable smoother page transitions and true fixed toolbars in devices that support both the overflow: and overflow-scrolling: touch; CSS properties.
+
+            });
+
+
+            $(document).bind("pageinit", function(){
+            var menuStatus; 
+            $("a.showMenu").click(function(){
+                if(menuStatus != true){
+                    $(".ui-page-active").animate({
+                        marginRight: "165px",
+            }, 300, function(){menuStatus = true});
+               return false;
+                  } else {
+                   $(".ui-page-active").animate({
+                  marginRight: "0px",
+                  }, 300, function(){menuStatus = false});
+                  return false;
+                }
+            });
+            $("#menu li a").click(function(){
+             var p = $(this).parent();
+             if($(p).hasClass('active')){
+              $("#menu li").removeClass('active');
+               } else {
+               $("#menu li").removeClass('active');
+                $(p).addClass('active');
+                }
+            });
+
+                /**
+                    Image slider for the home page
+                 */
+                $('div.flexslider').flexslider({
+                    touch:true,
+                    controlNav:false,
+                    animation: "slide",
+                    animationLoop: false,
+                    slideshow: false
+                });
+
+                $('#list_of_clients').flexslider({
+                    /**
+                        touch:true,
+                        animation: "slide",
+                        animationLoop: false,
+                        controlNav: false,
+                        itemWidth: 160,                  
+                                itemMargin: 10,                  
+                                minItems: 2,                    
+                                maxItems: 4,                    
+                                move: 2*/
+                    touch:true,
+                    animation: "slide",
+                    controlNav:false,
+                    slideshow:false,
+                    after: function(){
+                        //$('ul.slides > li').css('width','auto');
+                        //$('ul.slides > li').width('auto');
+                    } 
+                }); 
+
+                $(".ui-listview").listview();
+
+            });
+        </script>
+    </head> 
+    <body> 
+
+        <div data-role="page">
+
+            <div data-role="header">
+                <div class="div-header-anchored"><img id="img_jar_home" class="jar-home" src="http://www.jarcreative.com/wp-content/themes/jarcreative/mobile/images/header/jar-creative-logo.png" />
+                </div>
+                <a href="#"class="showMenu">Menu</a><div id="menu"><h3>Menu</h3>
+                    <ul data-role="listview" data-inset="true" class="ui-listview">
+                        <li class="ui-li ui-li-static ui-btn-up-c ui-first-child">Acura</li>
+                        <li class="ui-li ui-li-static ui-btn-up-c">Audi</li>
+                        <li class="ui-li ui-li-static ui-btn-up-c">BMW</li>
+                        <li class="ui-li ui-li-static ui-btn-up-c">Cadillac</li>
+                        <li class="ui-li ui-li-static ui-btn-up-c ui-last-child">Ferrari</li>
+                    </ul>
+                </div>
+            </div><!-- /header -->
+            <div data-role="content">	
+                <div class="div-content-wrapper">
+                    <div class="div-top-wrapper">
+                        <div class="div-text-heading-wrapper">
+                            <h1>The Smart Experience Agency</h1>
+                            <p>
+                                With core competencies in interface design, content strategy and measurement, we help top companies manage customer value in the digital channel.
+                            </p>
+                        </div>
+                        <div class="flexslider">
+                            <ul id="project_m_home_list" class="slides">
+                                <li id="content_4">
+                                    <a href="http://fast.wistia.net/embed/iframe/k1m9ly236u?videoWidth=640&videoHeight=360&controlsVisibleOnLoad=true&autoPlay=true&popover=true" 
+                                    class="wistia-popover[width=640,height=390,playerColor=#636155]"><img class="jar-home-control" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/Jar_Homepage_Slider_800x400_Video.png" /></a><script charset="ISO-8859-1" src="http://fast.wistia.com/static/popover-v1.js"></script>
+                                </li>
+                                <li id="content_1">
+                                    <img id="img_view_project_1" class="jar-home-control" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/Jar_Homepage_Slider_800x400_Jamieson.png" />
+                                </li>
+                                <li id="content_2">
+                                    <img id="img_view_project_2" class="jar-home-control" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/Jar_Homepage_Slider_800x400_Mandarin.png" />
+                                </li>
+                                <li id="content_3">
+                                    <img id="img_view_project_3" class="jar-home-control" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/Jar_Homepage_Slider_800x400_Orion.png" />
+                                </li>
+                            </ul>	
+                        </div>
+                        <div id="list_of_clients" class="flexslider">
+                            <ul class="slides">
+                                <li id="li_nav_c_1">
+                                    <img id="img_nav_c_1" class="img-jar-home-nav" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/nav/Jamieson_Grey.png" />
+                                </li>
+                                <li id="li_nav_c_2">
+                                    <img id="img_nav_c_2" class="img-jar-home-nav" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/nav/StRegisNY_grey.png" />
+                                </li>
+                                <li id="li_nav_c_4">
+                                    <img id="img_nav_c_4" class="img-jar-home-nav" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/nav/arbor_grey.png" />
+                                </li>
+                                <li id="li_nav_c_5">
+                                    <img id="img_nav_c_5" class="img-jar-home-nav" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/nav/intercon_grey.png" />
+                                </li>
+                                <li id="li_nav_c_6">
+                                    <img id="img_nav_c_6" class="img-jar-home-nav" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/nav/Jar_SelectClients_Franklin.png" />
+                                </li>
+                                <li id="li_nav_c_7">
+                                    <img id="img_nav_c_7" class="img-jar-home-nav" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/nav/Jar_SelectClients_Mackenzie.png" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--Middle Wrapper Starts Here -->
+                <div class="div-middle-wrapper">
+                    <div class="div-blog-wrapper">
+                        <img style="width:100%" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/middle/Jar_Shadow-Line.png" />
+                        <h1 class="h1-blog-title">Blog</h1><br>
+                        <div class="div-blog-inner-wrapper">
+                            <div class="div-blog-left">
+                                <img class="jar-home-content-blog" src="http://www.jarcreative.com/wp-content/themes/jarcreative/images/home-page/middle/blog.jpg" />
+                            </div>
+                            <div class="div-blog-right">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="div-download-wrapper">
+                        <span class="hs-cta-wrapper" id="hs-cta-wrapper-4e160c31-90a8-4053-9430-721a9c7bd0fc">
+                            <span class="hs-cta-node hs-cta-4e160c31-90a8-4053-9430-721a9c7bd0fc" id="hs-cta-4e160c31-90a8-4053-9430-721a9c7bd0fc">
+                                <!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]-->
+                                <a href="http://cta-redirect.hubspot.com/cta/redirect/204588/4e160c31-90a8-4053-9430-721a9c7bd0fc"><img class="hs-cta-img" id="hs-cta-img-4e160c31-90a8-4053-9430-721a9c7bd0fc" style="border-width:0px;" src="http://no-cache.hubspot.com/cta/default/204588/4e160c31-90a8-4053-9430-721a9c7bd0fc.png" /></a>
+                            </span>
+                            <script type="text/javascript">
+                                (function(){
+                                    var s='hubspotutk',r,c=((r=new RegExp('(^|; )'+s+'=([^;]*)').exec(document.cookie))?r[2]:''),w=window;w[s]=w[s]||c,
+                                    hsjs = document.createElement("script"), el=document.getElementById("hs-cta-4e160c31-90a8-4053-9430-721a9c7bd0fc");
+                                    hsjs.type = "text/javascript";hsjs.async = true;
+                                    hsjs.src = "//cta-service-cms2.hubspot.com/cs/loader-v2.js?pg=4e160c31-90a8-4053-9430-721a9c7bd0fc&pid=204588&hsutk=" + encodeURIComponent(c);
+                                    (document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(hsjs);
+                                    try{el.style.visibility="hidden";}catch(err){}
+                                    setTimeout(function() {try{el.style.visibility="visible";}catch(err){}}, 2500);
+                                })();
+                            </script>
+                        </span>
+                    </div>
+                </div> <!--Middle Wrapper Ends Here -->
+            </div><!-- /content -->
+
+            <div data-role="footer">
+                <h4>Page Footer</h4>
+            </div><!-- /footer -->
+        </div><!-- /page -->
+
+    </body>
+</html>
